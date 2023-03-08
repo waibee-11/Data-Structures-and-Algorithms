@@ -1,0 +1,14 @@
+Logic: Traverse through every element in the array and see if it is smaller than the next element. If not, then return false. Or else, at the end return true.
+
+Pseudo-code:
+for (int i = 0; i < n-1; i++){
+  if (arr[i] > arr[i+1]){
+    return False;
+  }
+}
+return True;
+
+TC: O(n) since we are traversing through the array only once.
+
+Notes:
+- in the for loop, we are looping only till i < n - 1 to avoid index_out_of_range error than can occur while comparing arr[n-1] with arr[n] if we are not careful
