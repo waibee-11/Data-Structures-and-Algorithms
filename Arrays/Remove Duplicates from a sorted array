@@ -1,0 +1,15 @@
+Logic: Set i = 0. Traverse through the entire array once. Move forward until you reach the first element that is not equal to arr[i] and bring it to arr[i+1] and move i forward by 1 step. Keep doing this until you get to the end of the array.
+
+Pseudo-code:
+int i = 0;
+for (int j = 1; j < n; j++){
+  if (arr[j] != arr[i]){
+    arr[i+1] = arr[j];
+    i++;
+  }
+}
+
+TC: O(n) since we are traversing through the array only once.
+
+Notes:
+- the for loop starts with j = 1 since we need not compare the 0th element. It will always be unique since it is the first element in the array.
