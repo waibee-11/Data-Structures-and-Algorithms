@@ -1,0 +1,32 @@
+Brute Force:
+
+Logic: Create a temp array. Add the first 'n' elements to it. Then shift the remaining elements to the left by 'n' places. Then add the temp elements to the end of the main array.
+
+Pseudo-code:
+vector<int> temp;
+for (int i = 0; i < d; i++){
+  temp.push_back(arr[i]);
+}
+
+for (int i = 0; i < n - d; i++){
+  arr[i] = arr[i+d];
+}
+
+for (int i = 0; i < d; i++){
+  arr[n - d + i] = temp.at(i);
+}
+
+TC: O(n + d) since we are traversing d elements first, then n - d elements and then d elements again [ d + n - d + d = n + d]
+SC: O(1) since we are creating a new temp array
+
+Optimum Approach:
+
+Logic: Reverse the first 'd' elements. Then reverse the remaining elements. Then reverse the entire array. This is called REVERSAL ALGORITHM.
+
+Pseudo-code:
+reverse(arr, 0, d);
+reverse(arr, d+1, n);
+reverse(arr, 0, n);
+
+TC: O(2n) since we are traversing d elements firsr, then n - d elements and then d elements again [d + n - d + n = 2n]
+SC: O(1) since we are not creating any new temp arrays
