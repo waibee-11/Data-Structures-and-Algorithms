@@ -1,0 +1,12 @@
+Logic: Set max to the 0th item in the array. Then traverse through the entire array and checkif any other number is bigger than max. If so, then update and continue similarly.
+
+Pseudo-Code:
+int max = arr[0];
+for (int i = 1; i < n; i++){
+  if (arr[i] > max){
+    max = arr[i];
+  }
+}
+return max;
+
+Time Complexity: O(n) since we are traversing through an array of size 'n' just once.
