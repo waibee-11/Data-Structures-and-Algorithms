@@ -1,0 +1,34 @@
+Brute Force:
+
+Logic: Run the same algorithm used to find 'max' twice. But, after running it the first time, swap the position of 'max' to index 0. And then run the same algorith from index 1 to n.
+
+Pseudo-code:
+run algorithm for finding max.
+sec_max = -1;
+for (int i = 0; i < n; i++){
+  if (arr[i] > sec_max && arr[i] < max){
+    sec_max = arr[i];
+  }
+}
+
+Time Complexity: O(2n) since we are traversing through the array twice.
+
+
+Optimum Approach:
+
+Logic: Set max and sec_max to be -1. Traverse through the entire array. For every element, if it is bigger than max, then max becomes sec_max and that element becomes the new max. If that element is only bigger than sec_max and not equal to max, then that element is the new sec_max.
+
+Pseudo-code;
+max, sec_max = -1;
+for (int i = 0; i < n; i++){
+  if (arr[i] > max){
+    sec_max = max;
+    max = arr[i];
+  }
+  else if (arr[i] > sec_max && arr[i] != max){
+    sec_max = arr[i];
+  }
+}
+return sec_max;
+
+Time Complexity: O(n) because we traverse through the array only once.
