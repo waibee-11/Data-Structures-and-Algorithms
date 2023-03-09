@@ -1,0 +1,72 @@
+Brute Force:
+
+Logic:
+- Set max_ones and max_ones_row = 0
+- Iterate through every row and count the number of ones in the row
+- If it exceeds max_ones, then update max_ones and max_ones_row
+- After the loop, return -1 if max_ones is 0 [that is there are no 1's the entire 2D array] or return max_ones_row
+
+Pseudo-code:
+int max_ones = 0;
+int max_ones_row = 0;
+for (int i = 0; i < n; i++){
+  int ones = 0;
+  for (int j = 0; j < m; j++){
+    if (arr[i][j] == 1){
+      ones ++;
+    }
+  }
+  if (ones > max_ones){
+    max_ones = ones;
+    max_ones_row = i;
+  }
+}
+if (max_ones == 0){
+  return -1;
+}
+return max_ones_row;
+
+TC: O(n*m) since we are iterating through the entire n*m 2D array once.
+
+Better Approach:
+
+Logic:
+- We visit every row
+- And instead of traversing through the entire row, we only go till we find the first 1
+- Since the rows are sorted, we know that all the items after the first 1 are going to be 1's
+
+Pseudo Code:
+int max_ones_row = 0;
+int max_ones = 0;
+for (int i = 0; i < n; i++){
+  int ones = 0;
+  int j = 0;
+  while (j < m){
+    if (arr[i][j] == 1){
+      ones = m - j;
+      if (ones > max_ones){
+        max_ones = ones;
+        max_ones_row = i;
+      }
+      break;
+    }
+    j++;
+  }
+}
+if (max_ones == 0){
+  return -1;
+}
+return max_ones_row;
+
+TC: O(n*m) because we are again visiting every element at worst case [if the last item on every is 1]
+
+Optimum Approach:
+
+Logic:
+- Instead of using linear search to find the index of the first 1 in every row, use Binary Search
+- I will update this later once I learn Binary Search
+
+TC: O(nlogm) since we are doing binary search on m items (O(logm)) n times
+    
+      
+
