@@ -1,0 +1,54 @@
+Brute Force:
+
+Logic:
+- Use 2 set data structures.
+- Since set stores only unique items, you can add all elements of both arrays to the set and you will get only unique elements (union).
+
+Pseudo-code:
+- create a set
+- for loop to add elements of array 1 to the set
+- for loop to add elements of array 2 to the set
+- for loop to add elements of set to an array named Union [don't use small case union since it is a keyword in C++]
+
+TC: O(2n + 2m) since we are switching elements from array to vector and then vector to array
+SC: O(n + m) where n amd m are the no. of unique elements in array 1 and array 2 respectively
+
+Optimum Solution:
+
+Logic:
+- Use 2 pointer approach.
+- Set i = 0 of array 1 and j = 0 of array 2.
+- Keep comparing elements.
+- If both are different, then add the smaller one and move the corresponding pointer forward [put the equal to sign in any one condition]
+- If any one reaches out of bounds, then add all remaining elements provided they are unique
+
+Pseudo-code:
+vector<int> Union;
+int i = 0;
+int j = 0;
+while (i < n && j < m){
+  if (arr1[i] <= arr2[j]){
+    if (Union.size() == 0 || Union.back() != arr1[i]){
+      Union.push_back(arr1[i]);
+    }
+    i++;
+  } else {
+    if (Union.size() == 0 || Union.back() != arr2[j]){
+      Union.push_back(arr2[j]);
+    }
+    j++;
+  }
+}
+while (i < n){
+  if (Union.size() == 0 || Union.back() != arr1[i]){
+    Union.push_back(arr1[i]);
+  }
+  i++;
+}
+while (j < m){
+  if (Union.size() == 0 || Union.back() != arr2[j]){
+    Union.push_back(arr1[i]);
+  }
+  j++;
+}
+return Union;
