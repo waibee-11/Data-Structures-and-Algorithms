@@ -1,0 +1,29 @@
+Optimum Method:
+
+Logic:
+- Same as the algorithm used in Union
+- The only difference is that here you add an item inside of Intersection vector only if arr1[i] == arr2[j] and move i and j forward
+- In all other cases, you move the index of the smaller item forward
+- If either i or j go out of bounds, then we stop
+
+Pseudo-code:
+vector<int> Intersection;
+int i;
+int j;
+while (i < n && j < m){
+  if (arr1[i] == arr2[j]){
+    if (Intersection.size() == 0 || Intersection.back() != arr1[i]){
+      Intersection.push_back(arr1[i]);
+    }
+    i++;
+    j++;
+  }
+  else if (arr1[i] < arr2[j]){
+    i++;
+  }
+  else if (arr2[j] < arr1[i]){
+    j++;
+  }
+}
+
+TC: O(n + m) since we are traversing through both arrays once
