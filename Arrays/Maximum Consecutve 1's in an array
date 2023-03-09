@@ -1,0 +1,29 @@
+Logic:
+- Set max_ct = 0 and ct = 0
+- Iterate through every element of the array
+- If the element is 1, then ct += 1
+- If the element is 0, then check if ct is greater than max_ct. If so, then update max_ct to ct and make ct = 0
+- After ending the loop, once again check if ct is bigger than max_ct to include the case of consecutive 1's ending the array.
+
+Pseudo-code:
+int max_ct = 0;
+int ct = 0;
+for (int i = 0; i < n; i++){
+  if (arr[i] == 1){
+    ct++;
+  } else {
+    if (ct > max_ct){
+      max_ct = ct;
+    }
+    ct = 0;
+  }
+}
+if (ct > max_ct){
+  ct_max = ct;
+}
+return max_ct;
+
+TC: O(n) since we are traversing through the array only once.
+
+Notes:
+- Remember to have the additional check after the for loop.
