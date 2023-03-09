@@ -1,0 +1,23 @@
+There are 4 possible approaches. Currently I have knowledge of only the 1st approach. Will update the remaining methods later.
+
+Approach 1: Use Hashing
+
+Logic:
+- Create an array hasher with indexes 0,1,....,n
+- For every element in arr, hasher[arr[i]] += 1
+- Then iterate through hasher from index 1 to n
+- Return the index for which hasher[i] = 0
+
+Pseudo-code:
+int hasher[n+1];
+for (int i = 0; i < n; i++){
+  hasher[arr[i]] += 1;
+}
+
+for (int i = 1; i < n + 1; i++){
+  if (hasher[i] == 0){
+    return i;
+  }
+}
+
+TC: O(2n) since we first iterate through arr and then iterate through hasher
