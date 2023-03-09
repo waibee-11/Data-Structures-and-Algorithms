@@ -1,0 +1,41 @@
+Brute Force would involve having a nested for loop for every element. You check from i till the end and count the number of occurences and return if you find 1.
+
+Better Approach
+
+Logic:
+- Use a hash map
+- For every element in the array, add it to the hash map and keep adding 1 to its value everytime you encounter that element.
+- Then use an iterator to itertate through the hash map and return it->first for which it->second is 1
+
+Pseudo-code:
+map<int, int> hasher;
+for (int i = 0; i < n; i++){
+  hasher[arr[i]] += 1;
+}
+map<int, int>::iterator it;
+for (it = hasher.begin(); it != hasher.end(); it++){
+  if (it->second == 1){
+    return it->first;
+  }
+}
+
+TC: O(2n) since we are only traversing through the array once and then the hash map again once
+SC: O(n) because we are creating a hash map of length n at worst case
+
+Optimum Approach:
+
+Logic:
+- XOR of a number with itself gives 0
+- XOR of a number with 0 gives that number
+- XOR every number in the array
+- All items that occur twice will get cancelled and give 0
+- The number that occurs once will XOR with 0 and return itself, giving us our answer.
+
+Pseudo-code:
+int answer = arr[0];
+for (int i = 1; i < n; i++){
+  answer = answer ^ arr[i];
+}
+return answer;
+
+TC: O(n) since we are traversing through the array only once.
