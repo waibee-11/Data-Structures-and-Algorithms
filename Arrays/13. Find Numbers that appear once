@@ -39,3 +39,11 @@ for (int i = 1; i < n; i++){
 return answer;
 
 TC: O(n) since we are traversing through the array only once.
+
+Notes:
+- A ^ A = 0
+- 0 ^ A = A
+
+
+
+
