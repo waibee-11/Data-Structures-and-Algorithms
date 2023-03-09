@@ -1,0 +1,27 @@
+Only Brute Force is done. Have to update remaining approaches.
+
+Approach 1: Brute Force
+
+Logic:
+- set max_len and len to 0
+- iterate through the aray
+- at every step, make a loop from that index till the end
+- keep track of the sum of numbers from that index till the end. Also keep track of the number of numbers (len)
+- if the sum equals k, then update max_len if the len of that subarray exceeds max_len
+
+Pseudo-code:
+int len = 0;
+int max_len = 0;
+for (int i = 0; i < n; i++){
+  int sum = 0;
+  for (int j = i; j < n; j++){
+    sum += arr[j];
+    len += 1;
+    if (sum == k && len > max_len){
+      max_len = len;
+    }
+  }
+}
+return max_len;
+
+TC: O(n^2) since we have a nested for loop inside another for loop [This code will exceed time-limit]
