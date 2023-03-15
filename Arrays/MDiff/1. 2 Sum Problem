@@ -1,0 +1,31 @@
+Problem Statement:
+- You are given 2 unsorted arrays and a target no. X.
+- You need to find pairs of numbers, one from each array that add up to X.
+- The pairs, however, must be sorted with respect to the first element
+
+Approach 1:
+
+Logic:
+- Sort the 1st array to ensure that the final answer is sorted with respect to the first element
+- Add every element in the second array to a hashmap
+- The element is the key and its index is the value
+- Now traverse through the 1st array
+- num = arr1[i], req = target - num
+- look for req in the hashmap, if you find it, then you have a possible pair
+- make it a pair and add it to the answer vector
+
+Pseudo-code:
+SORT ARR_1
+for (int i = 0; i < m; i++){
+  hpp[arr2[i]] = i; // adding element to the hashmap
+}
+for (int j = 0; j < n; j++){
+  int num = arr2[j];
+  int req = X - num;
+  if (hpp.find(req) != hpp.end()){ // hpp.find() will return an iterator to the element, so we compare it with hpp.end()
+    //found
+  }
+}
+
+TC: O(NlogN) + O(NlogN) + O(N) = O(NlogN)
+SC: O(M)
