@@ -1,0 +1,55 @@
+Problem Statement:
+- You are given an array of length N
+- You need to find an element that appears more than N/2 times in the array
+- If there is not any such element, return -1
+
+Approach 1: Brute Force - 2 For Loops
+
+Logic: Use multiple for loops, to find the no. of occurences of every element in the array and return the element that appears more than N/2 times
+TC: O(n^2) since we will need an outer loop to traverse through the array and an inner loop to compare every element with the current element in the outer loop
+
+Approach 2: Better Approach - Hashing
+
+Logic: Use hashing to create a hashmap to store the number of occurences of every element in the array. Then use a for loop and return the appropriate element.
+TC: O(logN) because hashing using an ordered is O(logN). We will also need to traverse it to find the appropriate element which takes O(N).
+SC: O(N) because in the worst case, you will need to add every element in the hashmap
+
+Approach 3: Optimum Approach - Moore's Voting Algorithm
+
+Logic:
+- You focus on one particular element.
+- You then keep moving element-wise in the array
+- You keep adding 1 to ctr if you find the same element
+- You keep removing 1 from ctr if you find a different element
+- If ctr reaches 0, it means that from the n elements you traversed through, n/2 are desired onces and n/2 are undesired ones. None dominate.
+- So, you ignore that part and start again from the current element
+
+Psuedo-code:
+int cur = a[0];
+int ct = 0;
+int i = 0;
+while (i < n){
+  if (a[i] == cur){
+    ct ++;
+    i++;
+  } else {
+    ct --;
+    i++;
+    if (ct == 0){
+      ct = 1;
+      cur = a[i];
+    }
+  }
+}
+int freq = 0;
+for (int i = 0; i < n; i++){
+  if (a[i] == cur){
+    freq ++;
+  }
+}
+if (freq > (n/2)){
+  return cur;
+}
+return -1;
+
+TC: O(N) since we are traversing through the array twice, but no nested loops
