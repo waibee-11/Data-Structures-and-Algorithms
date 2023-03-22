@@ -1,0 +1,37 @@
+Problem Statement:
+- You are given an array
+- You need to find the maximum possible sum of a subarray
+
+Approach 1: Brute Force
+- Use 2 or 3 for loops to find the sum of every single sub-array in the array and then return the maximum sum
+
+Optimum Approach: Kadane's Algorithm
+- set max_sum = INT_MIN
+- iterate through every element and add it to sum
+- if at any point, the sum is negative, then make it 0 and then continue
+- also, if sum exceeds max_sum, then update max_sum
+- you want to make sum 0 if it is less than 0 because it will only reduce the sum of the next elements, since it is negative
+
+Pseudo-code:
+max_sum = INT_MIN;
+sum = 0;
+for (int i = 0; i < n; i++){
+  if (sum < 0){
+    sum = 0;
+  }
+  sum += arr[i];
+  if (sum > max_sum){
+    max_sum = sum;
+  }
+}
+return max_sum;
+
+TC: O(n) since we are traversing through the array only (NO NESTED FOR LOOPS)
+
+Note: To find the sub-array:
+- use i and j
+- initially i = 0, j = 0, max_i = 0, max_j = 0
+- as your traverse, you update j by 1
+- if you reset your sum to 0, then make i = j and then continue again
+- if you are updating max_sum, then update max_i and max_j too
+- finally return all the elements from max_i to max_j
