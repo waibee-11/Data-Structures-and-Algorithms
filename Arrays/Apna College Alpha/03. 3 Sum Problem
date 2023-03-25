@@ -1,0 +1,50 @@
+Problem:
+- similar to the 2Sum Problem
+- you are given an array
+- you need return a vector of triplet vectors whose elements add up to 0
+
+Brute Force:
+- find all possible triplets using 3 nested for loops
+- for every triplet, check if the sum is 0 and return it
+
+TC: O(n^3) since we have 3 nested for loops
+
+Optimal approach:
+- sort the array in ascending order
+- fix one element
+- for the other 2, use 2 pointers (one at the beginning and one at the end)
+- check if the sum of the 3 numbers adds up to 0
+- if the sum is less than 0, then move the first pointer forward (which will increase the sum, since the array is in ascending order)
+- if the sum is bigger than 0, then move the last pointer backward (which will decrease the sum, ")
+- you will need to use 1 for loop for different fixed variables
+- we will also need a set to add triplets to, to remove duplicates
+- we can then transfer these non-duplicate triplets to a vector and return it
+
+Code:
+int n = nums.size();
+      vector<vector<int>>solution_vector;
+      set<vector<int>>solution_set;
+      sort(nums.begin(), nums.end());
+      for (int i = 0; i < n; i++){
+        int j = i + 1;
+        int k = n - 1;
+        while (j < k){
+          int sum = nums[i] + nums[j] + nums[k];
+          if (sum < 0){
+            j++;
+          } else if (sum > 0){
+            k--;
+         } else {
+           solution_set.insert({nums[i], nums[j], nums[k]});
+           j++;
+           k--;
+         }
+        }
+      }
+      for (auto it : solution_set){
+        solution_vector.push_back(it);
+      }
+      return solution_vector;
+
+TC: O(nlogn) which is because of sorting the array. The actual algorithm after sorting is O(n).
+SC: O(n) since we will need a set to remove duplicates
