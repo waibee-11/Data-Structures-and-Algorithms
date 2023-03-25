@@ -1,0 +1,43 @@
+Problem:
+- Consider a row of pipes of different heights
+- Imagine that it rains over this setup and water is trapped in the gaps
+- You have to calculate the amount of rainwater trapped in this setup
+- Width of each pipe is 1
+
+Approach:
+
+Key Points to be noted:
+- Trapped rainwater = (Height of rainwater - Height of pipe) * Width
+- For rainwater to be trapped, it's left and right boundaries should be bigger, otherwise the water will flow
+- The amount of rainwater trapped will be equal to minimum of the left and right boundaries
+
+- We use auxilary/helper arrays to solve this question
+- We use a for loop to find the left and right boundaries of every element
+- Then, we use the formula TRW = max(0, (min(LEFT_BOUNDARY, RIGHT_BOUNDARY) - PIPE_HEIGHT) * WIDTH);
+- since the width is 1 here, we can ignore the multiplication
+
+Code:
+int left_boundary[n];
+int right_boundary[n];
+//calculating left boundaries
+int left_max = arr[0];
+left_boundary[0] = left_max;
+for (int i = 1; i < n; i++){
+    left_boundary[i] = left_max;
+    left_max = max(left_max, arr[i]);
+}
+//calculating right boundaries
+int right_max = arr[n-1];
+right_boundary[n-1] = right_max;
+for (int i = n-1; i >= 0; i--){
+    right_boundary[i] = right_max;
+    right_max = max(right_max, arr[i]);
+}
+//calculating rainwater trapped
+long long rw_trap = 0;
+for (int i = 0; i < n; i++){
+    rw_trap += max(0, min(left_boundary[i], right_boundary[i]) - arr[i]);
+}
+return rw_trap;
+
+TC: O(n) since we do not have any nested for loops
