@@ -1,0 +1,41 @@
+Problem:
+- you are given an array
+- you need to find all the leaders
+- a leader is an element which is greater than every element to its right
+
+Brute Force:
+- use 2 nested for loops
+- the first for loop will iterate through the array
+- the second one will iterate through the array from that element till the end
+- using the second for loop, check if there are elements greater than the main element
+- if not, then the main element is a leader
+
+TC: O(n^2) as we have 2 nested for loops
+
+Optimum approach:
+- use reverse iteration
+- keep a pointer i on the last element and a pointer j on the second last element
+- keep running a while loop until j < 0
+- inside the loop, compare a[i] with a[j]
+- if a[j] > a[i], then it is a leader. Bring i to j and move j backward
+- if a[j] < a[i], then it is not a leader. Just move j backward
+- since you are using reverse iteration, the final answer is gonna have to be reversed for it to be in the correct order of the array
+
+Code:
+vector<int> solution;
+        int i = n - 1;
+        solution.push_back(a[i]);
+        int j = n - 2;
+        while (j >= 0){
+            if (a[j] >= a[i]){
+                solution.push_back(a[j]);
+                i = j;
+                j--;
+            } else {
+                j--;
+            }
+        }
+        reverse(solution.begin(), solution.end());
+        return solution;
+
+TC: O(n) since we are iterating through the array only once
