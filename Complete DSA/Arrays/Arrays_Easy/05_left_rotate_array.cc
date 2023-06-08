@@ -17,3 +17,5 @@ void leftRotate(int arr[], int k, int n) {
     reverse(arr + k, arr + n);
     reverse(arr, arr + n);
 }
+
+// TC: O(n). We are essentially reversing the array twice. However, while reversing we only traverse across half the elements, so when reversing twice, it simplifies to O(n)
