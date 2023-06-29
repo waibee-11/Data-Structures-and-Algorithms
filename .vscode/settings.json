@@ -1,8 +1,11 @@
 {
     "files.associations": {
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "vector": "cpp"
     },
     "cSpell.words": [
-        "contraints"
+        "contraints",
+        "subarray",
+        "subarrays"
     ]
 }
